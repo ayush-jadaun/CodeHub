@@ -47,7 +47,7 @@ export default function OurEvents() {
     }, {
         eventName: "Weekend Of Code",
         summary: "Weekend of Code is a week-long event designed to introduce first-year students to Development (DevJam), Competitive Programming (CodeStart), and AI/ML (Turing's Playground), fostering hands-on learning and skill-building in these key tech domains.",
-        registrationStatus: false
+        registrationStatus: true
     }
 ];
 
@@ -72,7 +72,7 @@ export default function OurEvents() {
                                         (event.registrationStatus)
                                             ?
                                             <>
-                                                <div onClick={() => navigate("/demoLink")} className='eventBoxRegistrationOpen'>
+                                                <div onClick={() => window.location.href = "https://weekendofcode.computercodingclub.in/"} className='eventBoxRegistrationOpen'>
                                                     Register Now
                                                 </div>
                                             </>
