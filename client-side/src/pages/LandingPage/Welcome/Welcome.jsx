@@ -9,6 +9,7 @@ import { useGSAP } from '@gsap/react';
 
 import CodeHubLarge from "../Assets/Logos/CodeHubLarge.png"
 import CCLogo from "../Assets/Logos/cclogo.png"
+import Notification from '../Notification/Notification';
 import "./Welcome.css"
 
 gsap.registerPlugin(useGSAP);
@@ -39,8 +40,12 @@ export default function Welcome() {
 
     return (
         <div id="welcomeMain" ref={introContainer}>
+
             <div id='welcomeBoxMain'>
                 <div id='welcomePhotoGreetMain'>
+                    <div id="notificationContainer" className="w-full pt-16 ">
+                                        <Notification />
+                    </div>
                     <img src={CCLogo} alt='CCLogo' />
                     <p>presents</p>
                     {/* CodeHubLarge image with animation */}
