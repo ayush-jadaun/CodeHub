@@ -25,6 +25,7 @@ function VerifyCfID() {
     // Codeforces ID and Problem ID
     const cfID = location.state?.cfID || "Mrinal__27";
     const problemID = "231A";
+    // console.log(cfID, problemID);
 
   // Handle the timer
     useEffect(() => {
