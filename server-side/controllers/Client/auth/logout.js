@@ -28,7 +28,7 @@ const Logout = AsyncErrorHandler(async (req, res, next) => {
     }
 
     // Clear the client side cookie.
-    console.log("hello line 31 logout.js");
+    //console.log("hello line 31 logout.js");
     res.clearCookie("jwt", {
         httpOnly: true,
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
