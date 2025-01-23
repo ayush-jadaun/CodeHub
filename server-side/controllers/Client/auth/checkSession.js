@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 
 const ClientSession = require("../../../model/clientSessionModel")
 const User = require("../../../model/userModel")
+const tempUser= require("../../../model/tempUserModel")
 const AsyncErrorHandler = require("../../../ErrorHandlers/async_error_handler");
 
 /**
@@ -24,8 +25,8 @@ const checkSession = AsyncErrorHandler(async (req, res, next) => {
             return res.status(401).json({ success: false, message: "Unauthorized access" });
         }
 
-        //extracting user information from database.
-        const user = await User.findById(userId);
+        //extracting user information from database from both the models tempUser and User model
+        const user = await tempUser.findById(userId) || await User.findById(userId);
         const sanitizedUser = {
             userID: user._id,
             email: user.email,
