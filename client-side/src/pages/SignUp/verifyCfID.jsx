@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import { BackgroundBeamsWithCollision } from "../../components/ui/background_beams_with_collision";
 import authAPI from "../../api/authAPI";
+import { useSelector } from "react-redux";
 
 function VerifyCfID() {
 
@@ -21,9 +22,10 @@ function VerifyCfID() {
     const navigate = useNavigate();
 
     const location = useLocation();
+    const {user}= useSelector((state)=> state.auth);
 
     // Codeforces ID and Problem ID
-    const cfID = location.state?.cfID || "Mrinal__27";
+    const cfID = location.state?.cfID || user.cfID;
     const problemID = "231A";
     // console.log(cfID, problemID);
 

@@ -25,7 +25,7 @@ export default function UserHome() {
 
     // to navigate to any route.
     const navigate = useNavigate();
-
+    
     // get the user detail from the redux store.
     const { user } = useSelector((state) => state.auth);
 
@@ -88,8 +88,9 @@ export default function UserHome() {
                             Verify your account to access full profile details and get personalized insights.
                         </p>
                         {/*Button - navigate to the  verify-cf-id page*/}
+                        {/*{ state: { cfID: formData.cfID, email: formData.email } }*/ }
                         <button
-                            onClick={() => navigate("/verify-cf-id")}
+                            onClick={() => navigate("/verify-cf-id", { state: {cfID: user.cfID, email: user.email}})}
                             className="mt-6 px-6 py-2 bg-gradient-to-br from-green-400 to-blue-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
                         >
                             Verify Now

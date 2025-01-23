@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const Users = require("../../../model/userModel");
+const tempUser= require("../../../model/tempUserModel")
 const ClientSessions = require("../../../model/clientSessionModel");
 const VerificationToken = require("../../../model/verificationTokenModel");
 const utils = require("../../../utils/auth/auth.utils")
@@ -21,6 +22,7 @@ const Login = AsyncErrorHandler(async (req, res, next) => {
         email: Joi.string().email().required(),
         password: Joi.string().required(),
     });
+    
 
     // check if the input is valid.
     const { error } = schema.validate(req.body);
@@ -34,17 +36,18 @@ const Login = AsyncErrorHandler(async (req, res, next) => {
 
 
     const { email, password } = req.body;
-
+    
     try {
-        // Check if user exists.
-        const user = await Users.findOne({ email });
+
+        //Check if user exists in tempUser or in Users model
+        const user = await tempUser.findOne({email}) || await Users.findOne({ email });
         if (!user) {
             return res.status(401).json({
                 success: false,
                 message: "Invalid credentials",
             });
         }
-
+        
         // Compare password.
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {

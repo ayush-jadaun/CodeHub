@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 
 const AsyncErrorHandler = require("../../../ErrorHandlers/async_error_handler");
 const Users = require("../../../model/userModel");
+const tempUser= require("../../../model/tempUserModel")
 const VerificationToken = require("../../../model/verificationTokenModel");
 const utils = require("../../../utils/auth/auth.utils");
 const sendEmail = require("../../../utils/auth/sendEmail");
@@ -21,8 +22,8 @@ const sendEmail = require("../../../utils/auth/sendEmail");
 const ForgetPassword = AsyncErrorHandler(async (req, res, next) => {
     const { email } = req.body;
 
-    //Check if the user exists and email is verified
-    const user = await Users.findOne({ email });
+    //Check if the user exists and email is verified in both the models tempUser and Users
+    const user = await tempUser.findOne({email}) || await Users.findOne({ email });
     if (!user || !user.emailVerified) {
         return res.status(404).json({
             success: false,
@@ -156,8 +157,8 @@ const ConfirmPasswordChange = AsyncErrorHandler(async (req, res, next) => {
         });
     }
 
-    // Find the user
-    const user = await Users.findOne({ email });
+    // Find the user in both models tempUser and Users
+    const user = await tempUser.findOne({email}) || await Users.findOne({ email });
     if (!user) {
         return res.status(404).json({
             success: false,
