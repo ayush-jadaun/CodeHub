@@ -34,6 +34,8 @@ const ForgetPassword = AsyncErrorHandler(async (req, res, next) => {
     if(res.cookies?.PASSWORD){
         res.clearCookie('PASSWORD', { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite:process.env.NODE_ENV === "production" ? "none" : "lax" });
     }
+    
+    
     try {
         // Remove any existing OTP for this email.
         await VerificationToken.deleteOne({ email, subject: "Password Change OTP" });
@@ -54,7 +56,7 @@ const ForgetPassword = AsyncErrorHandler(async (req, res, next) => {
         });
 
         sendEmail(email, "Password Change OTP", emailContent);
-
+        
         // Generate a temporary token for password change
         const passwordChangeToken = jwt.sign(
             { email, purpose: "Verify User" },
