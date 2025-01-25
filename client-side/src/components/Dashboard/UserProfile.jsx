@@ -4,7 +4,7 @@
 import React from "react";
 
 export default function UserProfile({ name, rank, image, userDetail }) {
-
+  
   // define rank styles for different ranks.
   const rankStyles = {
     newbie: {

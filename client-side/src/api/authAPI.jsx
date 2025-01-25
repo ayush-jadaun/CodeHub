@@ -12,7 +12,7 @@ async function handleLogin({ password, email }) {
     try {
         //Input validation.
         if (email === "" || password === "") {
-            throw new Error("Both cfID and password are required");
+            throw new Error("Both email and password are required");
         }
 
         //API request
@@ -180,7 +180,7 @@ const checkSession = async () => {
         const response = await axios.get(`${server_base_url}/check/session`, {
             withCredentials: true
         })
-
+      
         //return response data if successful.
         if (response.data.success) {
             return { success: true, data: response.data.data }

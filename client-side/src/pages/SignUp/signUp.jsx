@@ -63,7 +63,7 @@ function Signup() {
 
         //dispatch the signUp action.
         const resultAction =await dispatch(signUp(formData));
-
+        
         //check signup status.
         if (signUp.fulfilled.match(resultAction)) {
             navigate("/verify-email", { state: { cfID: formData.cfID, email: formData.email } });

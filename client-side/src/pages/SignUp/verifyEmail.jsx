@@ -32,7 +32,12 @@ function VerifyEmail() {
                 duration: 2000,
                 className: "toast-success"
             })
-            navigate("/verify-cf-id", { state: { email, cfID } });
+            if(cfID){
+                  navigate("/verify-cf-id", { state: { email, cfID } });
+            } else {
+                navigate("/login");
+            }
+           
         }
         else {
             toast.error(error, {
