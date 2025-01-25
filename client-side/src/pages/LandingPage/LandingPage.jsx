@@ -2,7 +2,8 @@
  * @fileoverview  - LandingPage component which is the main page of the website.
  */
 import React from 'react'
-
+import { useEffect } from 'react'
+import toast from 'react-hot-toast'
 import Welcome from './Welcome/Welcome'
 import MotiveAchievements from './MotiveAchievements/MotiveAchievements'
 import OurEvents from './OurEvents/OurEvents'
@@ -12,6 +13,9 @@ import Footer from "../../components/Footer/Footer"
 import "./LandingPage.css"
 
 export default function LandingPage() {
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
     return (
         <div className='bg-black h-auto'>
 

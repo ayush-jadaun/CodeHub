@@ -22,7 +22,7 @@ const submitFeedback = async (feedbackData) => {
             }
         }
         else {
-            throw new Error(response.data.message || "Registration failed. Please try again.");
+            throw new Error(response.data.message || "Submission failed. Please try again.");
         }
     } catch (error) {
         //Error handling.

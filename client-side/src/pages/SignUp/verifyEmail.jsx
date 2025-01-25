@@ -1,6 +1,6 @@
 import { BackgroundBeamsWithCollision } from "../../components/ui/background_beams_with_collision";
 import Loader from "../../components/Spinner/Loader"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { verifyEmail } from "../../redux/slices/authSlice";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,11 @@ function VerifyEmail() {
 
     const email = location.state?.email;
     const cfID = location.state?.cfID;
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
+    
 
     const handleVerify = async () => {
         if (!verificationCode.trim()) {

@@ -1,7 +1,7 @@
 /**
  * @fileoverview ForgetPassword page send mail - step 1 of ForgetPassword.
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../../api/forgetPassword";
 
 function SendEmail({ onNext,toast }) {
@@ -10,6 +10,10 @@ function SendEmail({ onNext,toast }) {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const api = new API();//create an instance of API class.
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     //handle the form submission and display toast messages.
     const handleSubmit = async (e) => {

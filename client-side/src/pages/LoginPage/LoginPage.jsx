@@ -17,6 +17,10 @@ export function Login() {
   const dispatch = useDispatch(); // For dispatching actions to the store.
   const { loading, error } = useSelector((state) => state.auth);// For getting the state from the store.
   const auth= useSelector((state)=> state.auth)
+
+  useEffect(()=>{
+    toast.dismiss();
+  },[])
   
   // initial Form Data State.
   const [formData, setFormData] = useState({
@@ -69,12 +73,12 @@ export function Login() {
       navigate(`/dashBoard`);
     }
     else if(resultAction.payload==="Email not verified. Verification email sent."){
-       navigate("/verify-email", { state: { cfID: formData.cfID, email: formData.email } });
+       navigate("/verify-email", { state: { email: formData.email } });
     }
     
     else {
       toast.error(resultAction.payload || "Error Occured! Please Try Again", {
-        duration: 2000,
+        duration: 10000,
         className: "toast-error"
       }
       )

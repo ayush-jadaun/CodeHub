@@ -1,7 +1,7 @@
 /**
  * @fileoverview Reset Password page - step 3 of ForgetPassword.
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import API from "../../api/forgetPassword";
@@ -12,6 +12,10 @@ function ResetPassword({toast}) {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     const navigate = useNavigate();//navigate to the specified route.
     const api = new API(); //create an instance of API class.

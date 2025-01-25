@@ -25,6 +25,10 @@ function VerifyOTP({ onNext, toast, email }) {
         return () => clearInterval(interval);
     }, [timer]);
 
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
+
     // handle resend OTP button.
     const handleResend = async () => {
         setResendDisabled(true);

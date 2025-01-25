@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 import ContestRating from './Graphs/ContestRating';
 import PerformanceIndex from './Graphs/PerformanceIndex';
 import SubmissionVerdict from './Graphs/SubmissionVerdict';
@@ -22,6 +22,10 @@ import '../../pages/pages.css';
 import './UserHome.css';
 
 export default function UserHome() {
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     // to navigate to any route.
     const navigate = useNavigate();

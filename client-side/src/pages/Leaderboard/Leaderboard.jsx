@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 import NavSpace from '../../components/NavSpace';
 import Spinner from '../../components/Spinner/Spinner';
 import Alert from '../../components/Alert/Alert';
@@ -17,6 +17,10 @@ import './Leaderboard.css';
 function LeaderUser(props) {
 
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     //Function to navigate to the user's profile page.
     function handleUserClick(){

@@ -1,7 +1,7 @@
 /**
  * @fileoverview ForgetPassword page.
  */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
@@ -21,6 +21,10 @@ function ForgetPassword() {
         if (step === 2) setOtp(data.otp);
         setStep((step) => step + 1);
     };
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     return (
         //background beams with collision effect.
