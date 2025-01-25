@@ -17,6 +17,7 @@ export function AuthWrapper({ children }) {
                 await dispatch(checkAuth());
                 setAuthChecked(true);
             }
+          
         }
         checkSession();
     }, []);

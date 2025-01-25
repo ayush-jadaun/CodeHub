@@ -29,6 +29,7 @@ function VerifyCfID() {
     const problemID = "231A";
     // console.log(cfID, problemID);
 
+
   // Handle the timer
     useEffect(() => {
         if (timeLeft > 0 && !timerExpired) {
@@ -46,6 +47,7 @@ function VerifyCfID() {
 
  // Check if timer is already running.
     useEffect(() => {
+        toast.dismiss();
         const startTime = localStorage.getItem("startTime");
         if (startTime) {
             const currentTime = new Date().getTime();

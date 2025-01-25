@@ -3,7 +3,7 @@
  */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 import NavSpace from '../../components/NavSpace';
 import Spinner from '../../components/Spinner/Spinner';
 import Alert from '../../components/Alert/Alert';
@@ -15,6 +15,11 @@ import './Noticeboard.css';
 
 //notice format to be displayed.
 function Notice(props) {
+
+  useEffect(()=>{
+    toast.dismiss();
+  },[])
+
   return (
     <div>
       <div className="notice-box">

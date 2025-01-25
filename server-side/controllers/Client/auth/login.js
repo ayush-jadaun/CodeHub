@@ -81,7 +81,7 @@ const Login = AsyncErrorHandler(async (req, res, next) => {
             //Error response for unverified email.
             return res.status(401).json({
                 success: false, message: "Email not verified. Verification email sent."
-                , isVerifiedEmail: false
+                , isVerifiedEmail: false,
             });
         }
 

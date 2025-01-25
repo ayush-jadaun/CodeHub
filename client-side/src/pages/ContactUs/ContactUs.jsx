@@ -1,7 +1,7 @@
 /**
  * @fileoverview ContactUs page - This page is used to send feedback to the admin.
  */
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import toast, { Toaster } from "react-hot-toast"
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,10 @@ import FeedbackAPI from "../../api/feedBackAPI"
 import Footer from '../../components/Footer/Footer';
 
 function ContactUs() {
+
+  useEffect(()=>{
+    toast.dismiss();
+},[])
 
   // Form data state.
   const [formData, setFormData] = useState({

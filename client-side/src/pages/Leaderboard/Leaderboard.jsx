@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 import NavSpace from '../../components/NavSpace';
 import Spinner from '../../components/Spinner/Spinner';
 import Alert from '../../components/Alert/Alert';
@@ -17,6 +17,10 @@ import './Leaderboard.css';
 function LeaderUser(props) {
 
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     //Function to navigate to the user's profile page.
     function handleUserClick(){
@@ -46,6 +50,10 @@ export default function Leaderboard() {
 
     const { user } = useSelector((state) => state.auth); //get the user details from the redux store.
 
+    const [cfFetch,setcfFetch] = useState(false);
+
+    console.log(cfFetch)
+    
     //State of html page to be rendered.
     const [PageHtml, setPageHtml] = useState(<>
         <NavSpace />
@@ -54,6 +62,9 @@ export default function Leaderboard() {
 
     //Function to sort the users by their Codeforces rating.
    async function SortUsersByRating(userBoardInfo){
+
+            setcfFetch(true);
+
             //List of all the Codeforces contests.
             const contests = await axios.get('https://codeforces.com/api/contest.list')
             const contests_data = contests.data.result;

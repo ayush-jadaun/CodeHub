@@ -1,6 +1,6 @@
 import { BackgroundBeamsWithCollision } from "../../components/ui/background_beams_with_collision";
 import Loader from "../../components/Spinner/Loader"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { verifyEmail } from "../../redux/slices/authSlice";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,11 @@ function VerifyEmail() {
     const email = location.state?.email;
     const cfID = location.state?.cfID;
 
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
+    
+
     const handleVerify = async () => {
         if (!verificationCode.trim()) {
             setFormError("Please enter the verification code.");
@@ -32,7 +37,12 @@ function VerifyEmail() {
                 duration: 2000,
                 className: "toast-success"
             })
-            navigate("/verify-cf-id", { state: { email, cfID } });
+            if(cfID){
+                  navigate("/verify-cf-id", { state: { email, cfID } });
+            } else {
+                navigate("/login");
+            }
+           
         }
         else {
             toast.error(error, {

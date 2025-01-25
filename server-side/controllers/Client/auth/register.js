@@ -46,7 +46,24 @@ const Register = AsyncErrorHandler(async (req, res, next) => {
             return res.status(500).json({ success: false, message: "An error occurred while verifying codeforces ID" });
         }
 
-        //Check if the user already exists in database .
+
+        //Check if the user already exists in database.
+        const existingTempUser= await tempUser.findOne({$or: [{ email }, { cfID }, { username }]});
+        if(existingTempUser && !existingTempUser.emailVerified){
+            //Delete user and verification token from database if user email is not verified.
+            await existingTempUser.deleteOne({ _id: tempUser._id });
+            await VerificationToken.deleteOne({ email: tempUser.email });
+        }
+        else if(existingTempUser && existingTempUser.cfVerified){
+            return res.status(400).json({
+                success: false,
+                message: "User already exists",
+            })
+        }
+        
+        
+
+        //Check if the user already exists in database.
         const existingUser = await User.findOne({ $or: [{ email }, { cfID }, { username }] });
         if (existingUser && !existingUser.emailVerified) {
             //Delete user and verification token from database if user email is not verified.
@@ -60,6 +77,8 @@ const Register = AsyncErrorHandler(async (req, res, next) => {
             })
         }
 
+        
+
         //Hash the password.
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -72,6 +91,8 @@ const Register = AsyncErrorHandler(async (req, res, next) => {
         };
         
         //saving the data in a temporary user model which will be deleted at the time of saving actual user
+        
+
         const newTempUser = new tempUser(user);
         await newTempUser.save();
 

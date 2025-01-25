@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner/Spinner';
 import NavSpace from '../../components/NavSpace';
 import Alert from '../../components/Alert/Alert';
@@ -16,6 +16,9 @@ import './Education.css';
 
 // Function to display the category of videos available for learning.
 function EduSection(props) {
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
     const _id = props._id;
     return (
         <div>

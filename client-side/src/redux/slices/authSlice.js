@@ -8,7 +8,6 @@ import authAPI from "../../api/authAPI"
 export const login = createAsyncThunk('auth/login', async ({ password, email }, { rejectWithValue }) => {
     try {
         const response = await authAPI.handleLogin({ password, email });
-
         if (response.success) {
             return response.data; // return the full response if successful
         } else {
@@ -23,8 +22,8 @@ export const login = createAsyncThunk('auth/login', async ({ password, email }, 
 // Thunk for checking user session authorization
 export const checkAuth = createAsyncThunk('auth/checkSession', async (__dirname, { rejectWithValue }) => {
     try {
+     
         const response = await authAPI.checkSession();
-
         if (response.success) {
             return response.data;
         }

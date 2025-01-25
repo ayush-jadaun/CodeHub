@@ -1,7 +1,7 @@
 /**
  * @fileoverview   signup page.
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast"
@@ -16,6 +16,10 @@ function Signup() {
     const navigate = useNavigate();//navigate to the specified route.
     const dispatch = useDispatch();//dispatch an action to the store.
     const { loading, error } = useSelector((state) => state.auth);
+
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
 
     //manage state of the form.
     const [formData, setFormData] = useState({
@@ -63,7 +67,7 @@ function Signup() {
 
         //dispatch the signUp action.
         const resultAction =await dispatch(signUp(formData));
-
+        
         //check signup status.
         if (signUp.fulfilled.match(resultAction)) {
             navigate("/verify-email", { state: { cfID: formData.cfID, email: formData.email } });

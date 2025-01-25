@@ -10,6 +10,8 @@ const checkSession = require("./auth/checkSession")
 const userFeedback = require("./userFeedBack");
 const logout = require("./auth/logout");
 const ForgetPassword = require("./auth/ForgetPassword");
+const noticeboard = require("./noticeboard");
+const leaderboard = require("./leaderboard");
 
 module.exports = {
     login,
@@ -20,5 +22,7 @@ module.exports = {
     checkSession,
     userFeedback,
     logout,
-    ForgetPassword
+    ForgetPassword,
+    noticeboard,
+    leaderboard
 };
