@@ -1,4 +1,5 @@
 const AsyncErrorHandler = require("../../ErrorHandlers/async_error_handler");
+const Notices = require("../../model/noticeModel");
 
 /**
  * @desc Fetches all notices created by the admin.

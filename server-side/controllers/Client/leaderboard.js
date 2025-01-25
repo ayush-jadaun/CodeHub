@@ -1,6 +1,7 @@
 
 const AsyncErrorHandler = require("../../ErrorHandlers/async_error_handler");
-
+const ClientSessions = require("../../model/clientSessionModel");
+const Users = require("../../model/userModel");
 /**
  * @desc Fetches all users in the leaderboard with their codeforces ID.
  */
@@ -18,10 +19,12 @@ const Leaderboard = AsyncErrorHandler(async  (req, res, next) => {
         //fetch all users with their codeforces ID.
         const cfID = await Users.find().select(["cfID"]);
         //return the fetched data.
+        
         return res.json({ status: true, data: cfID });
     }
     catch (error) {
         //handle error.
+        console.log(error)
         next(error);
     }
 

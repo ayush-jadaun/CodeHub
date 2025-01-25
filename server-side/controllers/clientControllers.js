@@ -1,8 +1,7 @@
 
 
 const EducationCategories = require("../model/educationCategoryModel");
-const Notices = require("../model/noticeModel");
-const Users = require("../model/userModel");
+
 const Videos = require("../model/videoModel");
 const ClientSessions = require("../model/clientSessionModel");
 
