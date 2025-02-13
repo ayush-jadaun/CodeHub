@@ -44,7 +44,7 @@ export default function Welcome() {
             <div id='welcomeBoxMain'>
                 <div id='welcomePhotoGreetMain'>
                     <div id="notificationContainer" className="w-full pt-16 ">
-                                        <Notification />
+                                        {/* <Notification /> */}
                     </div>
                     <img src={CCLogo} alt='CCLogo' />
                     <p>presents</p>
